@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/blockade-games-skybox-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: default
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/blockade-games-skybox-openapi.yml
