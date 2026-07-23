@@ -1,0 +1,315 @@
+openapi: 3.0.3
+info:
+  title: Blockade Labs API Documentation Skybox Exports API
+  description: ''
+  version: 1.0.0
+servers:
+- url: https://backend.blockadelabs.com
+security:
+- default: []
+tags:
+- name: Skybox Exports
+  description: ''
+paths:
+  /api/v1/skybox/export:
+    get:
+      summary: Get Export Types
+      operationId: getExportTypes
+      description: Returns the list of all available export types.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: JPG
+                    key:
+                      type: string
+                      example: equirectangular-jpg
+                    premium_feature:
+                      type: boolean
+                      example: false
+                example:
+                - id: 1
+                  name: JPG
+                  key: equirectangular-jpg
+                  premium_feature: false
+                - id: 2
+                  name: PNG
+                  key: equirectangular-png
+                  premium_feature: false
+                - id: 3
+                  name: Cube Map
+                  key: cube-map-png
+                  premium_feature: true
+                - id: 4
+                  name: HDRI HDR
+                  key: hdri-hdr
+                  premium_feature: true
+                - id: 5
+                  name: HDRI EXR
+                  key: hdri-exr
+                  premium_feature: true
+                - id: 6
+                  name: Depth Map
+                  key: depth-map-png
+                  premium_feature: true
+                - id: 7
+                  name: Video Landscape
+                  key: video-landscape-mp4
+                  premium_feature: true
+                - id: 8
+                  name: Video Portrait
+                  key: video-portrait-mp4
+                  premium_feature: true
+                - id: 9
+                  name: Video Square
+                  key: video-square-mp4
+                  premium_feature: true
+      tags:
+      - Skybox Exports
+    post:
+      summary: Request Export
+      operationId: requestExport
+      description: 'Process for tracking export progress is identical to tracking skybox generation by using Pusher, Webhook or API Data pooling.
+
+
+        If the export request has already been completed you will immediately get a response with status=complete and file_url in the response.'
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  file_url: https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png
+                  id: b26584eb869cdebeecdf009b7c17c73b
+                  skybox_obfuscated_id: 08ccb4947d546dec0ce454538ebb51a8
+                  type: equirectangular-png
+                  type_id: 2
+                  status: complete
+                  queue_position: 0
+                  error_message: null
+                  pusher_channel: export_status_update_b26584eb869cdebeecdf009b7c17c73b
+                  pusher_event: status_update
+                  webhook_url: test_weebhook
+                  created_at: '2023-08-23T13:52:59.000000Z'
+                properties:
+                  file_url:
+                    type: string
+                    example: https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png
+                    description: URL for the exported file
+                  id:
+                    type: string
+                    example: b26584eb869cdebeecdf009b7c17c73b
+                    description: ID of your export request. It can be used to track progress or cancel the request
+                  skybox_obfuscated_id:
+                    type: string
+                    example: 08ccb4947d546dec0ce454538ebb51a8
+                    description: Obfuscated ID of the skybox for which the export was requested
+                  type:
+                    type: string
+                    example: equirectangular-png
+                    description: Requested export type
+                  type_id:
+                    type: integer
+                    example: 2
+                    description: Requested export type ID
+                  status:
+                    type: string
+                    example: complete
+                    description: 'Initially status is set as ''pending'' after you send the export request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error and in some cases (ie. for JPG and Depth Map export) this will be immediately set to ''complete''.'
+                  queue_position:
+                    type: integer
+                    example: 0
+                    description: Position of your request in a export generation queue
+                  error_message:
+                    type: string
+                    example: null
+                    description: If status=error here you should see the error message
+                  pusher_channel:
+                    type: string
+                    example: export_status_update_b26584eb869cdebeecdf009b7c17c73b
+                    description: Pusher channel name used to track export generation progress
+                  pusher_event:
+                    type: string
+                    example: status_update
+                    description: Pusher channel event used to track generation
+                  webhook_url:
+                    type: string
+                    example: test_weebhook
+                  created_at:
+                    type: string
+                    example: '2023-08-23T13:52:59.000000Z'
+                    description: Time created
+      tags:
+      - Skybox Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skybox_id:
+                  type: string
+                  description: Skybox obfuscated_id (needs to have status=complete)
+                  example: f87f6a4b3784591795bfed30100a9ef6
+                type_id:
+                  type: integer
+                  description: Export type id.
+                  example: 2
+                webhook_url:
+                  type: string
+                  description: Optionally, you may specify a webhook url to specify the destination for progress updates.
+                  example: ''
+              required:
+              - skybox_id
+              - type_id
+  /api/v1/skybox/export/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the export.
+      example: aut
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get export request
+      operationId: getExportRequest
+      description: ''
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  file_url: https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png
+                  id: b26584eb869cdebeecdf009b7c17c73b
+                  skybox_obfuscated_id: 08ccb4947d546dec0ce454538ebb51a8
+                  type: equirectangular-png
+                  type_id: 2
+                  status: complete
+                  queue_position: 0
+                  error_message: null
+                  pusher_channel: export_status_update_b26584eb869cdebeecdf009b7c17c73b
+                  pusher_event: status_update
+                  webhook_url: test_weebhook
+                  created_at: '2023-08-23T13:52:59.000000Z'
+                properties:
+                  file_url:
+                    type: string
+                    example: https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png
+                    description: URL for the exported file
+                  id:
+                    type: string
+                    example: b26584eb869cdebeecdf009b7c17c73b
+                    description: ID of your export request. It can be used to track progress or cancel the request
+                  skybox_obfuscated_id:
+                    type: string
+                    example: 08ccb4947d546dec0ce454538ebb51a8
+                    description: Obfuscated ID of the skybox for which the export was requested
+                  type:
+                    type: string
+                    example: equirectangular-png
+                    description: Requested export type
+                  type_id:
+                    type: integer
+                    example: 2
+                    description: Requested export type ID
+                  status:
+                    type: string
+                    example: complete
+                    description: 'Initially status is set as ''pending'' after you send the export request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error and in some cases (ie. for JPG and Depth Map export) this will be immediately set to ''complete''.'
+                  queue_position:
+                    type: integer
+                    example: 0
+                    description: Position of your request in a export generation queue
+                  error_message:
+                    type: string
+                    example: null
+                    description: If status=error here you should see the error message
+                  pusher_channel:
+                    type: string
+                    example: export_status_update_b26584eb869cdebeecdf009b7c17c73b
+                    description: Pusher channel name used to track export generation progress
+                  pusher_event:
+                    type: string
+                    example: status_update
+                    description: Pusher channel event used to track generation
+                  webhook_url:
+                    type: string
+                    example: test_weebhook
+                  created_at:
+                    type: string
+                    example: '2023-08-23T13:52:59.000000Z'
+                    description: Time created
+      tags:
+      - Skybox Exports
+    delete:
+      summary: Cancel export request
+      operationId: cancelExportRequest
+      description: ''
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+      tags:
+      - Skybox Exports
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: ''

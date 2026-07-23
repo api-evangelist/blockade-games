@@ -1,0 +1,1200 @@
+openapi: 3.0.3
+info:
+  title: Blockade Labs API Documentation Skybox Exports Skyboxes API
+  description: ''
+  version: 1.0.0
+servers:
+- url: https://backend.blockadelabs.com
+security:
+- default: []
+tags:
+- name: Skyboxes
+  description: ''
+paths:
+  /api/v1/skybox:
+    post:
+      summary: Generate Skybox
+      operationId: generateSkybox
+      description: Used for generating skyboxes, skybox remixes and depth maps.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 46
+                  obfuscated_id: c60354672339614111cee85d21253244
+                  user_id: 8
+                  title: 'World #46'
+                  prompt: dark forest
+                  seed: 50702979
+                  negative_text: null
+                  username: test
+                  status: pending
+                  queue_position: 1
+                  file_url: ''
+                  thumb_url: ''
+                  depth_map_url: ''
+                  remix_imagine_id: null
+                  remix_obfuscated_id: null
+                  isMyFavorite: false
+                  created_at: '2023-08-21T13:35:14+00:00'
+                  updated_at: '2023-08-21T13:35:14+00:00'
+                  error_message: null
+                  pusher_channel: status_update_c60354672339614111cee85d21253244
+                  pusher_event: status_update
+                  type: skybox
+                  skybox_style_id: 2
+                  skybox_id: 2
+                  skybox_style_name: V2 Fantasy Lands
+                  skybox_name: V2 Fantasy Lands
+                properties:
+                  id:
+                    type: integer
+                    example: 46
+                    description: ID of your generation. It can be used to track generation progress or to cancel the generation
+                  obfuscated_id:
+                    type: string
+                    example: c60354672339614111cee85d21253244
+                    description: Hash id of your generation
+                  user_id:
+                    type: integer
+                    example: 8
+                    description: Your user id
+                  title:
+                    type: string
+                    example: 'World #46'
+                    description: Generation title
+                  prompt:
+                    type: string
+                    example: dark forest
+                  seed:
+                    type: integer
+                    example: 50702979
+                  negative_text:
+                    type: string
+                    example: null
+                  username:
+                    type: string
+                    example: test
+                    description: Your username
+                  status:
+                    type: string
+                    example: pending
+                    description: 'Initially status is set as ''pending'' after you send a generation request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error.'
+                  queue_position:
+                    type: integer
+                    example: 1
+                    description: Position of your request in a generation queue
+                  file_url:
+                    type: string
+                    example: ''
+                    description: Full size of generated image url (empty until generation is completed)
+                  thumb_url:
+                    type: string
+                    example: ''
+                    description: Thumbnail of generated image url (empty until generation is completed)
+                  depth_map_url:
+                    type: string
+                    example: ''
+                  remix_imagine_id:
+                    type: string
+                    example: null
+                  remix_obfuscated_id:
+                    type: string
+                    example: null
+                  isMyFavorite:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2023-08-21T13:35:14+00:00'
+                    description: Time created
+                  updated_at:
+                    type: string
+                    example: '2023-08-21T13:35:14+00:00'
+                    description: Time updated
+                  error_message:
+                    type: string
+                    example: null
+                    description: If status=error here you should see the error message
+                  pusher_channel:
+                    type: string
+                    example: status_update_c60354672339614111cee85d21253244
+                    description: Pusher channel name used to track generation progress
+                  pusher_event:
+                    type: string
+                    example: status_update
+                    description: Pusher channel event used to track generation progress
+                  type:
+                    type: string
+                    example: skybox
+                    description: Type of skybox generation
+                  skybox_style_id:
+                    type: integer
+                    example: 2
+                    description: Skybox style id used in a generation request
+                  skybox_id:
+                    type: integer
+                    example: 2
+                  skybox_style_name:
+                    type: string
+                    example: V2 Fantasy Lands
+                    description: Skybox style name used in a generation request
+                  skybox_name:
+                    type: string
+                    example: V2 Fantasy Lands
+      tags:
+      - Skyboxes
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  description: 'Text prompt describing the skybox world you wish to create. Maximum number of characters: 550. If you are using skybox_style_id then the maximum number of characters is defined in the max-char response parameter defined for each style.'
+                  example: dark forest
+                negative_text:
+                  type: string
+                  description: 'Describe things to avoid in the skybox world you wish to create. Maximum number of characters: 200. If you are using skybox_style_id then the maximum number of characters is defined in the negative-text-max-char response parameter defined for each style.'
+                  example: ''
+                enhance_prompt:
+                  type: boolean
+                  description: 'Have an AI automatically improve your prompt to generate pro-level results every time (default: false)'
+                  example: ''
+                seed:
+                  type: integer
+                  description: Send 0 for a random seed generation. Any other number (1-2147483647) set will be used to "freeze" the image generator and create similar images when run again with the same seed and settings.
+                  example: ''
+                skybox_style_id:
+                  type: integer
+                  description: Predefined styles that influence the overall aesthetic of your skybox generation (Fantasy landscape, Anime art style, etc...).
+                  example: ''
+                remix_imagine_id:
+                  type: integer
+                  description: ID of a previously generated skybox
+                  example: ''
+                control_image:
+                  type: string
+                  format: binary
+                  description: Control image used to influence the generation. The image needs to be exacly 1024 pixels wide and 512 pixels tall PNG equirectangular projection image of a scribble with black (#00000) background and white (#ffffff) brush strokes. For "scribble" effect you will also need to send control_model="scribble".
+                control_model:
+                  type: string
+                  description: 'Model used for the control_image. Currently, the only option is: "scribble".'
+                  example: ''
+                init_image:
+                  type: string
+                  format: binary
+                  description: Image (Binary/Base64 string/Absolute URL) to be used as initial image for Skybox generation. Please use equirectangular 360° images. 2:1 aspect ratio recommended. Maximum file size is 50 megabytes.
+                init_strength:
+                  type: number
+                  description: Scale to be used as initial influence of the "Init Image" for Skybox generation. The default value is 0, allowed range is between 0 and 0.97, where 0 represents no influence and 0.97 represents lots of influence. Only has an effect when using an init_image parameter.
+                  example: ''
+                return_depth_hq:
+                  type: boolean
+                  description: 'Request for high quality depth map. It will be returned in the depth_map_url parameter. (default: false)'
+                  example: ''
+                webhook_url:
+                  type: string
+                  description: Optionally, you may specify a webhook url to specify the destination for progress updates
+                  example: ''
+              required:
+              - prompt
+  /api/v1/skybox/styles:
+    get:
+      summary: Get Skybox Styles
+      operationId: getSkyboxStyles
+      description: Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation.
+      parameters:
+      - in: query
+        name: model_version
+        description: Filter skybox styles by model version number (ie. "2" or "3")
+        example: ''
+        required: false
+        schema:
+          type: string
+          description: Filter skybox styles by model version number (ie. "2" or "3")
+          example: ''
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                      description: To be used as 'skybox_style_id' parameter in the 'Generate skybox' endpoint to influence the overall aesthetic of your skybox generation
+                    name:
+                      type: string
+                      example: Fantasy
+                      description: Name of the style
+                    description:
+                      type: string
+                      example: Classic fantasy subject matter concept art renderings
+                      description: Description of the style
+                    max-char:
+                      type: integer
+                      example: 370
+                      description: Maximum number of characters that can be used for 'prompt' in the 'Generate skybox' endpoint
+                    negative-text-max-char:
+                      type: integer
+                      example: 220
+                      description: Maximum number of characters that can be used for 'negative_text' in the 'Generate skybox' endpoint
+                    image:
+                      type: string
+                      example: https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.webp
+                      description: Webp image example of the style
+                    image_jpg:
+                      type: string
+                      example: https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.jpg
+                      description: JPG image example of the style
+                    model:
+                      type: string
+                      example: Model 2
+                      description: Model name
+                    model_version:
+                      type: string
+                      example: '2'
+                      description: Model version number
+                    sort_order:
+                      type: integer
+                      example: 20
+                      description: Sorting order
+                    premium:
+                      type: integer
+                      example: 0
+                      description: Shows if the style is premium
+                    new:
+                      type: integer
+                      example: 0
+                      description: Shows if the style is new
+                    experimental:
+                      type: integer
+                      example: 0
+                      description: Shows if the style is experimental
+                    skybox_style_families_id:
+                      type: integer
+                      example: 3
+                      description: ID of the family the style belongs to
+                example:
+                - id: 2
+                  name: Fantasy
+                  description: Classic fantasy subject matter concept art renderings
+                  max-char: 370
+                  negative-text-max-char: 220
+                  image: https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.webp
+                  image_jpg: https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.jpg
+                  model: Model 2
+                  model_version: '2'
+                  sort_order: 20
+                  premium: 0
+                  new: 0
+                  experimental: 0
+                  skybox_style_families_id: 3
+                - id: 43
+                  name: Art Mix
+                  description: Multimedia painterly art that pulls from watercolor, marker, paint, pastels, and more
+                  max-char: 412
+                  negative-text-max-char: 210
+                  image: https://images.blockadelabs.com/images/skybox/MYklQhpxG7wbn7HkftNTNxLZMc5mBjYvUuRajHpp.webp
+                  image_jpg: https://images.blockadelabs.com/images/skybox/MYklQhpxG7wbn7HkftNTNxLZMc5mBjYvUuRajHpp.jpg
+                  model: Model 2
+                  model_version: '2'
+                  sort_order: 6
+                  premium: 0
+                  new: 0
+                  experimental: 0
+                  skybox_style_families_id: 7
+      tags:
+      - Skyboxes
+  /api/v1/skybox/families:
+    get:
+      summary: Get Skybox Style Families
+      operationId: getSkyboxStyleFamilies
+      description: Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation, sorted by style family. This route can be used in order to build a menu of styles sorted by family.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: family
+                      description: Can be of type 'family' or 'style' if the style doesn't belong to any families
+                    id:
+                      type: integer
+                      example: 17
+                      description: ID of a type
+                    name:
+                      type: string
+                      example: Model 3 Realistic
+                      description: Name of the menu item
+                    sort_order:
+                      type: integer
+                      example: 1
+                      description: Ascending order position in the menu
+                    items:
+                      type: array
+                      example:
+                      - type: style
+                        id: 119
+                        name: M3 Photoreal (Featured)
+                        sort_order: 1
+                        description: Photographic realism with a high degree of flexibility and good visual fidelity
+                        max-char: 600
+                        negative-text-max-char: 410
+                        image: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.webp
+                        image_jpg: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.jpg
+                        model: Model 3
+                        model_version: '3'
+                      - type: style
+                        id: 102
+                        name: M3 Cinematic Realism
+                        sort_order: 2
+                        description: Photographic realism with dramatic, dark color grading and filmic mood
+                        max-char: 600
+                        negative-text-max-char: 430
+                        image: https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.webp
+                        image_jpg: https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.jpg
+                        model: Model 3
+                        model_version: '3'
+                      description: Collection of styles that belong to a family
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: style
+                            description: Refers to a skybox style type found within a specific family
+                          id:
+                            type: integer
+                            example: 119
+                            description: To be used as 'skybox_style_id' parameter in the 'Generate skybox' endpoint to influence the overall aesthetic of your skybox generation
+                          name:
+                            type: string
+                            example: M3 Photoreal (Featured)
+                            description: Name of the style
+                          sort_order:
+                            type: integer
+                            example: 1
+                            description: Ascending order position inside a family
+                          description:
+                            type: string
+                            example: Photographic realism with a high degree of flexibility and good visual fidelity
+                            description: This is a description of this style (string/nullable)
+                          max-char:
+                            type: integer
+                            example: 600
+                            description: Maximum number of characters that can be used for 'prompt' in the 'Generate skybox' endpoint
+                          negative-text-max-char:
+                            type: integer
+                            example: 410
+                            description: Maximum number of characters that can be used for 'negative_text' in the 'Generate skybox' endpoint
+                          image:
+                            type: string
+                            example: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.webp
+                            description: Webp image example of the style
+                          image_jpg:
+                            type: string
+                            example: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.jpg
+                            description: JPG image example of the style
+                          model:
+                            type: string
+                            example: Model 3
+                            description: Model name
+                          model_version:
+                            type: string
+                            example: '3'
+                            description: Model version number
+                example:
+                - type: family
+                  id: 17
+                  name: Model 3 Realistic
+                  sort_order: 1
+                  items:
+                  - type: style
+                    id: 119
+                    name: M3 Photoreal (Featured)
+                    sort_order: 1
+                    description: Photographic realism with a high degree of flexibility and good visual fidelity
+                    max-char: 600
+                    negative-text-max-char: 410
+                    image: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.webp
+                    image_jpg: https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.jpg
+                    model: Model 3
+                    model_version: '3'
+                  - type: style
+                    id: 102
+                    name: M3 Cinematic Realism
+                    sort_order: 2
+                    description: Photographic realism with dramatic, dark color grading and filmic mood
+                    max-char: 600
+                    negative-text-max-char: 430
+                    image: https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.webp
+                    image_jpg: https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.jpg
+                    model: Model 3
+                    model_version: '3'
+                - type: style
+                  id: 13
+                  name: Advanced (no style)
+                  sort_order: 17
+                  description: null
+                  max-char: 540
+                  negative-text-max-char: 220
+                  image: null
+                  image_jpg: null
+                  model: Model 2
+                  model_version: '2'
+      tags:
+      - Skyboxes
+  /api/v1/imagine/requests/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the skybox.
+      example: 1
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get Skybox by id
+      operationId: getSkyboxById
+      description: ''
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  request:
+                    id: 46
+                    obfuscated_id: c60354672339614111cee85d21253244
+                    user_id: 8
+                    title: 'World #46'
+                    prompt: dark forest
+                    seed: 50702979
+                    negative_text: null
+                    username: test
+                    status: complete
+                    queue_position: 0
+                    file_url: https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    thumb_url: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    depth_map_url: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    remix_imagine_id: null
+                    remix_obfuscated_id: null
+                    isMyFavorite: false
+                    created_at: '2023-08-21T13:35:14+00:00'
+                    updated_at: '2023-08-22T06:46:00+00:00'
+                    error_message: null
+                    pusher_channel: status_update_c60354672339614111cee85d21253244
+                    pusher_event: status_update
+                    type: skybox
+                    skybox_style_id: 2
+                    skybox_id: 2
+                    skybox_style_name: V2 Fantasy Lands
+                    skybox_name: V2 Fantasy Lands
+                    dispatched_at: '2023-08-22T06:45:28+00:00'
+                    processing_at: '2023-08-22T06:45:55+00:00'
+                    completed_at: '2023-08-22T06:46:00+00:00'
+                properties:
+                  request:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 46
+                        description: ID of your generation. It can be used to track generation progress or to cancel the generation
+                      obfuscated_id:
+                        type: string
+                        example: c60354672339614111cee85d21253244
+                        description: Hash id of your generation
+                      user_id:
+                        type: integer
+                        example: 8
+                        description: Your user id
+                      title:
+                        type: string
+                        example: 'World #46'
+                        description: Generation title
+                      prompt:
+                        type: string
+                        example: dark forest
+                        description: Prompt text used to generate skybox
+                      seed:
+                        type: integer
+                        example: 50702979
+                        description: Seed number used to generate skybox
+                      negative_text:
+                        type: string
+                        example: null
+                      username:
+                        type: string
+                        example: test
+                        description: Your username
+                      status:
+                        type: string
+                        example: complete
+                        description: 'Initially status is set as ''pending'' after you send a generation request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error.'
+                      queue_position:
+                        type: integer
+                        example: 0
+                        description: Position of your request in a generation queue
+                      file_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox image (6144x3072 pixels)
+                      thumb_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox thumbnail (672x336 pixels)
+                      depth_map_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox depth map image (2048x1024 pixels)
+                      remix_imagine_id:
+                        type: string
+                        example: null
+                      remix_obfuscated_id:
+                        type: string
+                        example: null
+                      isMyFavorite:
+                        type: boolean
+                        example: false
+                      created_at:
+                        type: string
+                        example: '2023-08-21T13:35:14+00:00'
+                        description: Time created
+                      updated_at:
+                        type: string
+                        example: '2023-08-22T06:46:00+00:00'
+                        description: Time updated
+                      error_message:
+                        type: string
+                        example: null
+                        description: If status=error here you should see the error message
+                      pusher_channel:
+                        type: string
+                        example: status_update_c60354672339614111cee85d21253244
+                        description: Pusher channel name used to track generation progress
+                      pusher_event:
+                        type: string
+                        example: status_update
+                        description: Pusher channel event used to track generation progress
+                      type:
+                        type: string
+                        example: skybox
+                        description: Type of generation (currently "skybox" is the only one)
+                      skybox_style_id:
+                        type: integer
+                        example: 2
+                        description: Skybox style ID used to generate skybox
+                      skybox_id:
+                        type: integer
+                        example: 2
+                      skybox_style_name:
+                        type: string
+                        example: V2 Fantasy Lands
+                        description: Skybox style name used to generate skybox
+                      skybox_name:
+                        type: string
+                        example: V2 Fantasy Lands
+                      dispatched_at:
+                        type: string
+                        example: '2023-08-22T06:45:28+00:00'
+                        description: Time dispatched
+                      processing_at:
+                        type: string
+                        example: '2023-08-22T06:45:55+00:00'
+                        description: Time processing started
+                      completed_at:
+                        type: string
+                        example: '2023-08-22T06:46:00+00:00'
+                        description: Time completed
+      tags:
+      - Skyboxes
+    delete:
+      summary: Cancel Generation
+      operationId: cancelGeneration
+      description: This request sets the status to the abort value.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+      tags:
+      - Skyboxes
+  /api/v1/imagine/requests/obfuscated-id/{obfuscatedId}:
+    parameters:
+    - in: path
+      name: obfuscatedId
+      description: Obfuscated ID of the skybox.
+      example: c60354672339614111cee85d21253244
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Skybox by Obfuscated id
+      operationId: getSkyboxByObfuscatedId
+      description: ''
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  request:
+                    id: 46
+                    obfuscated_id: c60354672339614111cee85d21253244
+                    user_id: 8
+                    title: 'World #46'
+                    prompt: dark forest
+                    seed: 50702979
+                    negative_text: null
+                    username: test
+                    status: complete
+                    queue_position: 0
+                    file_url: https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    thumb_url: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    depth_map_url: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                    remix_imagine_id: null
+                    remix_obfuscated_id: null
+                    isMyFavorite: false
+                    created_at: '2023-08-21T13:35:14+00:00'
+                    updated_at: '2023-08-22T06:46:00+00:00'
+                    error_message: null
+                    pusher_channel: status_update_c60354672339614111cee85d21253244
+                    pusher_event: status_update
+                    type: skybox
+                    skybox_style_id: 2
+                    skybox_id: 2
+                    skybox_style_name: V2 Fantasy Lands
+                    skybox_name: V2 Fantasy Lands
+                    dispatched_at: '2023-08-22T06:45:28+00:00'
+                    processing_at: '2023-08-22T06:45:55+00:00'
+                    completed_at: '2023-08-22T06:46:00+00:00'
+                properties:
+                  request:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 46
+                        description: ID of your generation. It can be used to track generation progress or to cancel the generation
+                      obfuscated_id:
+                        type: string
+                        example: c60354672339614111cee85d21253244
+                        description: Hash id of your generation
+                      user_id:
+                        type: integer
+                        example: 8
+                        description: Your user id
+                      title:
+                        type: string
+                        example: 'World #46'
+                        description: Generation title
+                      prompt:
+                        type: string
+                        example: dark forest
+                        description: Prompt text used to generate skybox
+                      seed:
+                        type: integer
+                        example: 50702979
+                        description: Seed number used to generate skybox
+                      negative_text:
+                        type: string
+                        example: null
+                      username:
+                        type: string
+                        example: test
+                        description: Your username
+                      status:
+                        type: string
+                        example: complete
+                        description: 'Initially status is set as ''pending'' after you send a generation request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error.'
+                      queue_position:
+                        type: integer
+                        example: 0
+                        description: Position of your request in a generation queue
+                      file_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox image (6144x3072 pixels)
+                      thumb_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox thumbnail (672x336 pixels)
+                      depth_map_url:
+                        type: string
+                        example: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1
+                        description: Generated skybox depth map image (2048x1024 pixels)
+                      remix_imagine_id:
+                        type: string
+                        example: null
+                      remix_obfuscated_id:
+                        type: string
+                        example: null
+                      isMyFavorite:
+                        type: boolean
+                        example: false
+                      created_at:
+                        type: string
+                        example: '2023-08-21T13:35:14+00:00'
+                        description: Time created
+                      updated_at:
+                        type: string
+                        example: '2023-08-22T06:46:00+00:00'
+                        description: Time updated
+                      error_message:
+                        type: string
+                        example: null
+                        description: If status=error here you should see the error message
+                      pusher_channel:
+                        type: string
+                        example: status_update_c60354672339614111cee85d21253244
+                        description: Pusher channel name used to track generation progress
+                      pusher_event:
+                        type: string
+                        example: status_update
+                        description: Pusher channel event used to track generation progress
+                      type:
+                        type: string
+                        example: skybox
+                        description: Type of generation (currently "skybox" is the only one)
+                      skybox_style_id:
+                        type: integer
+                        example: 2
+                        description: Skybox style ID used to generate skybox
+                      skybox_id:
+                        type: integer
+                        example: 2
+                      skybox_style_name:
+                        type: string
+                        example: V2 Fantasy Lands
+                        description: Skybox style name used to generate skybox
+                      skybox_name:
+                        type: string
+                        example: V2 Fantasy Lands
+                      dispatched_at:
+                        type: string
+                        example: '2023-08-22T06:45:28+00:00'
+                        description: Time dispatched
+                      processing_at:
+                        type: string
+                        example: '2023-08-22T06:45:55+00:00'
+                        description: Time processing started
+                      completed_at:
+                        type: string
+                        example: '2023-08-22T06:46:00+00:00'
+                        description: Time completed
+      tags:
+      - Skyboxes
+  /api/v1/imagine/myRequests:
+    get:
+      summary: Get History
+      operationId: getHistory
+      description: ''
+      parameters:
+      - in: query
+        name: status
+        description: 'Filter by status. Options: all, pending, dispatched, processing, complete, abort, error (default: all)'
+        example: ''
+        required: false
+        schema:
+          type: string
+          description: 'Filter by status. Options: all, pending, dispatched, processing, complete, abort, error (default: all)'
+          example: ''
+      - in: query
+        name: limit
+        description: 'Number of items to be returned per page (default: 18, max-value: 100)'
+        example: ''
+        required: false
+        schema:
+          type: integer
+          description: 'Number of items to be returned per page (default: 18, max-value: 100)'
+          example: ''
+      - in: query
+        name: offset
+        description: 'Page number (default: 0)'
+        example: ''
+        required: false
+        schema:
+          type: integer
+          description: 'Page number (default: 0)'
+          example: ''
+      - in: query
+        name: order
+        description: 'Sort order. Options: ASC, DESC (default: DESC)'
+        example: ''
+        required: false
+        schema:
+          type: string
+          description: 'Sort order. Options: ASC, DESC (default: DESC)'
+          example: ''
+      - in: query
+        name: imagine_id
+        description: Filter by skybox ID
+        example: ''
+        required: false
+        schema:
+          type: integer
+          description: Filter by skybox ID
+          example: ''
+      - in: query
+        name: query
+        description: Filter by title or prompt
+        example: ''
+        required: false
+        schema:
+          type: string
+          description: Filter by title or prompt
+          example: ''
+      - in: query
+        name: generator
+        description: Filter by generator
+        example: ''
+        required: false
+        schema:
+          type: string
+          description: Filter by generator
+          example: ''
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                  - id: 8442285
+                    obfuscated_id: f87f6a4b3784591795bfed30100a9ef6
+                    user_id: 1352
+                    title: 'World #8442285'
+                    prompt: dark forest
+                    seed: 32061051
+                    negative_text: null
+                    username: test
+                    status: complete
+                    queue_position: 0
+                    file_url: https://blockade-platform-production.s3.amazonaws.com/images/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                    thumb_url: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                    depth_map_url: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_depth-map.jpg?ver=1
+                    remix_imagine_id: null
+                    remix_obfuscated_id: null
+                    isMyFavorite: false
+                    created_at: '2023-08-23T08:51:55+00:00'
+                    updated_at: '2023-08-23T08:52:10+00:00'
+                    error_message: null
+                    pusher_channel: status_update_f87f6a4b3784591795bfed30100a9ef6
+                    pusher_event: status_update
+                    type: skybox
+                    skybox_style_id: 2
+                    skybox_id: 2
+                    skybox_style_name: Fantasy
+                    skybox_name: Fantasy
+                    dispatched_at: '2023-08-23T08:51:56+00:00'
+                    processing_at: '2023-08-23T08:51:56+00:00'
+                    completed_at: '2023-08-23T08:52:10+00:00'
+                  totalCount: 18
+                  has_more: true
+                properties:
+                  data:
+                    type: array
+                    example:
+                    - id: 8442285
+                      obfuscated_id: f87f6a4b3784591795bfed30100a9ef6
+                      user_id: 1352
+                      title: 'World #8442285'
+                      prompt: dark forest
+                      seed: 32061051
+                      negative_text: null
+                      username: test
+                      status: complete
+                      queue_position: 0
+                      file_url: https://blockade-platform-production.s3.amazonaws.com/images/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                      thumb_url: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                      depth_map_url: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_depth-map.jpg?ver=1
+                      remix_imagine_id: null
+                      remix_obfuscated_id: null
+                      isMyFavorite: false
+                      created_at: '2023-08-23T08:51:55+00:00'
+                      updated_at: '2023-08-23T08:52:10+00:00'
+                      error_message: null
+                      pusher_channel: status_update_f87f6a4b3784591795bfed30100a9ef6
+                      pusher_event: status_update
+                      type: skybox
+                      skybox_style_id: 2
+                      skybox_id: 2
+                      skybox_style_name: Fantasy
+                      skybox_name: Fantasy
+                      dispatched_at: '2023-08-23T08:51:56+00:00'
+                      processing_at: '2023-08-23T08:51:56+00:00'
+                      completed_at: '2023-08-23T08:52:10+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 8442285
+                          description: ID of your generation. It can be used to track generation progress or to cancel the generation
+                        obfuscated_id:
+                          type: string
+                          example: f87f6a4b3784591795bfed30100a9ef6
+                          description: Hash id of your generation
+                        user_id:
+                          type: integer
+                          example: 1352
+                          description: Your user id
+                        title:
+                          type: string
+                          example: 'World #8442285'
+                          description: Generation title
+                        prompt:
+                          type: string
+                          example: dark forest
+                          description: Prompt text used to generate skybox
+                        seed:
+                          type: integer
+                          example: 32061051
+                          description: Seed number used to generate skybox
+                        negative_text:
+                          type: string
+                          example: null
+                        username:
+                          type: string
+                          example: test
+                          description: Your username
+                        status:
+                          type: string
+                          example: complete
+                          description: 'Initially status is set as ''pending'' after you send a generation request. Status will change from one state to another and you will get updates for each one if you are using pusher or webhook: pending -> dispatched -> processing -> complete. Also you can get abort or error.'
+                        queue_position:
+                          type: integer
+                          example: 0
+                          description: Position of your request in a generation queue
+                        file_url:
+                          type: string
+                          example: https://blockade-platform-production.s3.amazonaws.com/images/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                          description: Generated skybox image (6144x3072 pixels)
+                        thumb_url:
+                          type: string
+                          example: https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1
+                          description: Generated skybox thumbnail (672x336 pixels)
+                        depth_map_url:
+                          type: string
+                          example: https://blockade-platform-production.s3.amazonaws.com/depths/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_depth-map.jpg?ver=1
+                          description: Generated skybox depth map image (2048x1024 pixels)
+                        remix_imagine_id:
+                          type: string
+                          example: null
+                        remix_obfuscated_id:
+                          type: string
+                          example: null
+                        isMyFavorite:
+                          type: boolean
+                          example: false
+                        created_at:
+                          type: string
+                          example: '2023-08-23T08:51:55+00:00'
+                          description: Time created
+                        updated_at:
+                          type: string
+                          example: '2023-08-23T08:52:10+00:00'
+                          description: Time updated
+                        error_message:
+                          type: string
+                          example: null
+                          description: If status=error here you should see the error message
+                        pusher_channel:
+                          type: string
+                          example: status_update_f87f6a4b3784591795bfed30100a9ef6
+                          description: Pusher channel name used to track generation progress
+                        pusher_event:
+                          type: string
+                          example: status_update
+                          description: Pusher channel event used to track generation progress
+                        type:
+                          type: string
+                          example: skybox
+                          description: Type of generation (currently "skybox" is the only one)
+                        skybox_style_id:
+                          type: integer
+                          example: 2
+                          description: Skybox style ID used to generate skybox
+                        skybox_id:
+                          type: integer
+                          example: 2
+                        skybox_style_name:
+                          type: string
+                          example: Fantasy
+                          description: Skybox style name used to generate skybox
+                        skybox_name:
+                          type: string
+                          example: Fantasy
+                        dispatched_at:
+                          type: string
+                          example: '2023-08-23T08:51:56+00:00'
+                          description: Time dispatched
+                        processing_at:
+                          type: string
+                          example: '2023-08-23T08:51:56+00:00'
+                          description: Time processing started
+                        completed_at:
+                          type: string
+                          example: '2023-08-23T08:52:10+00:00'
+                          description: Time completed
+                  totalCount:
+                    type: integer
+                    example: 18
+                  has_more:
+                    type: boolean
+                    example: true
+      tags:
+      - Skyboxes
+  /api/v1/imagine/requests/pending:
+    delete:
+      summary: Cancel All Pending Generations
+      operationId: cancelAllPendingGenerations
+      description: This request sets the status of all pending generations to abort.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+      tags:
+      - Skyboxes
+  /api/v1/imagine/deleteImagine/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the skybox to delete.
+      example: 46
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: Delete
+      operationId: delete
+      description: This request deletes skybox.
+      parameters:
+      - in: header
+        name: x-api-key
+        description: ''
+        example: '{YOUR_API_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: Item deleted successfully
+                  id: '46'
+                properties:
+                  success:
+                    type: string
+                    example: Item deleted successfully
+                  id:
+                    type: string
+                    example: '46'
+      tags:
+      - Skyboxes
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: ''
