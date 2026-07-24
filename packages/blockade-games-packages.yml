@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/Blockade-Games
+packages:
+  - language: javascript
+    registry: npm
+    name: "@blockadelabs/sdk"
+    version: 1.1.7
+    url: https://www.npmjs.com/package/@blockadelabs/sdk
+    repository: https://github.com/Blockade-Games/BlockadeLabs-SDK-Node
+    install: npm install @blockadelabs/sdk
+    official: true
+  - language: php
+    registry: packagist
+    name: blockadelabs/sdk
+    url: https://packagist.org/packages/blockadelabs/sdk
+    repository: https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel
+    install: composer require blockadelabs/sdk
+    official: true
+  - language: csharp
+    registry: github
+    name: BlockadeLabs-SDK-Unity
+    url: https://github.com/Blockade-Games/BlockadeLabs-SDK-Unity
+    install: "Unity Package Manager: add git URL https://github.com/Blockade-Games/BlockadeLabs-SDK-Unity.git"
+    official: true
+notes: >-
+  First-party Skybox AI client SDKs published under the Blockade-Games GitHub
+  org. Node (TypeScript/JavaScript) on npm, Laravel (PHP) on Packagist, and a
+  Unity (C#) plugin distributed via GitHub / Unity Package Manager. Boilerplate
+  starter repos (BlockadeLabs-SDK-Node-Boilerplate, -Laravel-Boilerplate) also
+  exist but are templates, not distributable libraries.

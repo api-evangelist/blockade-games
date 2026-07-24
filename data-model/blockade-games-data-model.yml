@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/blockade-games-skybox-openapi.yml
+entities:
+  - name: SkyboxRequest
+    aka: imagine
+    description: An asynchronous skybox/panorama generation (or remix / depth map).
+    key_fields: [id, obfuscated_id, status, prompt, skybox_style_id, file_url, depth_map_url]
+    operations: [generateSkybox, getSkyboxById, getSkyboxByObfuscatedId, getHistory, cancelGeneration, cancelAllPendingGenerations, delete]
+  - name: SkyboxStyle
+    description: A generation style a request is produced in.
+    operations: [getSkyboxStyles]
+  - name: SkyboxStyleFamily
+    description: A grouping of related skybox styles.
+    operations: [getSkyboxStyleFamilies]
+  - name: SkyboxExport
+    description: An export of a completed skybox into a downloadable file type.
+    key_fields: [id, skybox_id, type_id, status, file_url]
+    operations: [getExportTypes, requestExport, getExportRequest, cancelExportRequest]
+  - name: ExportType
+    description: A supported export file format.
+    operations: [getExportTypes]
+relationships:
+  - from: SkyboxRequest
+    to: SkyboxStyle
+    kind: belongs_to
+    via: skybox_style_id
+  - from: SkyboxStyle
+    to: SkyboxStyleFamily
+    kind: belongs_to
+    via: family
+  - from: SkyboxRequest
+    to: SkyboxRequest
+    kind: belongs_to
+    via: remix_imagine_id
+    note: A remix references the source imagine request.
+  - from: SkyboxExport
+    to: SkyboxRequest
+    kind: belongs_to
+    via: skybox_id
+  - from: SkyboxExport
+    to: ExportType
+    kind: belongs_to
+    via: type_id
+note: >-
+  The OpenAPI declares no components.schemas (responses are inline examples),
+  so relationships are derived from request-body id-reference fields and the
+  operation set rather than $ref links.

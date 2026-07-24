@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Blockade Labs Skybox AI
+  version: 1.0.0
+extends: openapi/blockade-games-skybox-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: blockade-games
+      x-apievangelist-product: Skybox AI
+      x-apievangelist-auth: apiKey (x-api-key header)
+      x-apievangelist-async: >-
+        Generation is asynchronous. POST /api/v1/skybox returns a request that
+        progresses pending -> dispatched -> processing -> complete (or abort /
+        error). Track via webhook_url callbacks, Pusher (status_update event),
+        or polling GET /api/v1/imagine/requests/{id}.
+      x-apievangelist-webhooks: true
+  - target: $.tags
+    update:
+      - name: Skyboxes
+        description: >-
+          Generate, remix, retrieve, list, and delete 360 skybox / panorama
+          generations and their depth maps.
+      - name: Skybox Exports
+        description: >-
+          Request and retrieve exports of a completed skybox in various file
+          formats (equirectangular JPG/PNG, cube map, depth map, HDRI, video).
+  - target: $.servers
+    update:
+      - url: https://backend.blockadelabs.com
+        description: Production

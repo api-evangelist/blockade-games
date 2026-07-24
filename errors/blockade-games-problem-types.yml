@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/blockade-games-skybox-openapi.yml + https://api-documentation.blockadelabs.com/api/
+format: none
+note: >-
+  The Skybox OpenAPI documents only 200 responses, so no HTTP error envelope is
+  formally specified. What the API models instead is an ASYNCHRONOUS GENERATION
+  failure state carried on the imagine request status field. HTTP-level errors
+  (401 bad/missing x-api-key, 404 unknown id, 422 invalid params, 429 rate
+  limiter) are returned by the platform but are not enumerated in the spec.
+generation_states:
+  - status: pending
+    terminal: false
+    meaning: Request queued.
+  - status: dispatched
+    terminal: false
+    meaning: Sent to AI workers.
+  - status: processing
+    terminal: false
+    meaning: Generation underway.
+  - status: complete
+    terminal: true
+    meaning: Generation succeeded; file URLs available.
+  - status: abort
+    terminal: true
+    meaning: Generation cancelled (by user or system).
+  - status: error
+    terminal: true
+    meaning: Generation failed; an error_message is returned on the request.
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid x-api-key.
+    documented_in_spec: false
+  - status: 404
+    title: Not found
+    detail: Unknown imagine/skybox id.
+    source_operation: openapi/blockade-games-skybox-openapi.yml#getSkyboxById
+    documented_in_spec: false
+  - status: 422
+    title: Unprocessable entity
+    detail: Invalid generation parameters (e.g. unknown skybox_style_id).
+    source_operation: openapi/blockade-games-skybox-openapi.yml#generateSkybox
+    documented_in_spec: false
+  - status: 429
+    title: Too many requests
+    detail: API rate limiter triggered (polling discouraged; use webhooks/Pusher).
+    documented_in_spec: false

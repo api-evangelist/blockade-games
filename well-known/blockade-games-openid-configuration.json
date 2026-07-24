@@ -1,0 +1,29 @@
+{
+    "issuer": "https:\/\/backend.blockadelabs.com",
+    "authorization_endpoint": "https:\/\/backend.blockadelabs.com\/oauth\/authorize",
+    "token_endpoint": "https:\/\/backend.blockadelabs.com\/oauth\/token",
+    "grant_types_supported": [
+        "authorization_code",
+        "client_credentials",
+        "refresh_token"
+    ],
+    "response_types_supported": [
+        "code"
+    ],
+    "subject_types_supported": [
+        "public"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "RS256"
+    ],
+    "scopes_supported": [
+        "openid",
+        "email"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_basic",
+        "client_secret_post"
+    ],
+    "jwks_uri": "https:\/\/backend.blockadelabs.com\/oauth\/jwks",
+    "end_session_endpoint": "https:\/\/backend.blockadelabs.com\/oauth\/logout"
+}

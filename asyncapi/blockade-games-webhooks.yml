@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://api-documentation.blockadelabs.com/api/
+spec_type: Webhooks
+description: >-
+  Blockade Labs Skybox AI does not publish an AsyncAPI document, but it
+  documents a real webhook + realtime event surface for asynchronous skybox
+  generation and export jobs. Provide a webhook_url on POST /api/v1/skybox or
+  POST /api/v1/skybox/export to receive callbacks; or subscribe to the Pusher
+  channel returned on the request.
+delivery:
+  webhook:
+    trigger: On each generation status update
+    method: POST
+    body: application/json
+    retries: 5
+    backoff: [1m, 5m, 15m, 1h]
+  pusher:
+    app_id: "1555452"
+    key: "a6a7b7662238ce4494d5"
+    cluster: mt1
+    channel: pusher_channel (returned per request, e.g. status_update_<hash>)
+    event: status_update
+events:
+  - status: pending
+  - status: dispatched
+  - status: processing
+  - status: complete
+  - status: abort
+  - status: error
+payload_fields:
+  - id
+  - obfuscated_id
+  - status
+  - queue_position
+  - type
+  - title
+  - prompt
+  - skybox_style_id
+  - error_message
+  - file_url            # full image 8192x4096
+  - thumb_url           # 720x360
+  - depth_map_url       # 2048x1024
+  - pusher_channel
+  - pusher_event
+  - created_at
+  - updated_at

@@ -1,0 +1,62 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://www.blockadelabs.com/llms.txt
+# The marketing site (blockade.games -> blockadelabs.com) is Wix-hosted and
+# exposes a Wix Site MCP endpoint for agentic access to site content. This is
+# a real hosted MCP server, but it exposes generic Wix site tools (business
+# details / site search), NOT the Skybox generation API operations.
+server:
+  name: blockade-labs-site
+  transport: http
+  url: https://www.blockadelabs.com/_api/mcp
+  docs: https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
+  provider: Wix Site MCP
+tools:
+  - name: GetBusinessDetails
+    description: Retrieve business/site details (timezone, email, phone, address).
+  - name: SearchInSite
+    description: Search the site for information.
+  - name: SearchSiteApiDocs
+    description: Retrieve API documentation for Wix business solutions on the site.
+  - name: GenerateVisitorToken
+    description: Create a visitor session/token before calling site APIs.
+  - name: CallWixSiteAPI
+    description: Call site API methods on a visitor's behalf.
+# ---------------------------------------------------------------------------
+# Candidate MCP tool surface DERIVED from the Skybox REST OpenAPI. No official
+# hosted MCP server wraps the Skybox generation API as of this pass; these are
+# a candidate mapping (one tool per operationId) for a future Skybox MCP.
+candidate_skybox_server:
+  method: derived
+  status: candidate
+  source: openapi/blockade-games-skybox-openapi.yml
+  base_url: https://backend.blockadelabs.com
+  auth: x-api-key header
+  tools:
+    - name: generate_skybox
+      source_operation: openapi/blockade-games-skybox-openapi.yml#generateSkybox
+    - name: get_skybox_styles
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getSkyboxStyles
+    - name: get_skybox_style_families
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getSkyboxStyleFamilies
+    - name: get_skybox_by_id
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getSkyboxById
+    - name: get_skybox_by_obfuscated_id
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getSkyboxByObfuscatedId
+    - name: cancel_generation
+      source_operation: openapi/blockade-games-skybox-openapi.yml#cancelGeneration
+    - name: cancel_all_pending
+      source_operation: openapi/blockade-games-skybox-openapi.yml#cancelAllPendingGenerations
+    - name: get_history
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getHistory
+    - name: delete_skybox
+      source_operation: openapi/blockade-games-skybox-openapi.yml#delete
+    - name: get_export_types
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getExportTypes
+    - name: request_export
+      source_operation: openapi/blockade-games-skybox-openapi.yml#requestExport
+    - name: get_export_request
+      source_operation: openapi/blockade-games-skybox-openapi.yml#getExportRequest
+    - name: cancel_export_request
+      source_operation: openapi/blockade-games-skybox-openapi.yml#cancelExportRequest

@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+host: https://backend.blockadelabs.com
+documents:
+  - path: /.well-known/openid-configuration      # OIDC discovery
+    status: 200
+    file: blockade-games-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server  # RFC 8414
+    status: 404
+  - path: /.well-known/security.txt              # RFC 9116
+    status: 404
+  - path: /.well-known/api-catalog               # RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+notes: >-
+  backend.blockadelabs.com publishes an OpenID Connect discovery document
+  (issuer, authorize/token endpoints, jwks_uri, scopes openid+email). This
+  covers platform login/OAuth for the Skybox web app; the public Skybox REST
+  API itself authenticates with the x-api-key header (see authentication/).

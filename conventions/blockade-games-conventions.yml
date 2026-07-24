@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://api-documentation.blockadelabs.com/api/ + openapi/blockade-games-skybox-openapi.yml
+authentication:
+  style: api-key
+  location: header
+  parameter: x-api-key
+  alt: query parameter api_key (documented as less secure)
+  ref: authentication/blockade-games-authentication.yml
+async_model:
+  description: >-
+    Generation is asynchronous. POST /api/v1/skybox creates an imagine request
+    that progresses pending -> dispatched -> processing -> complete (or abort /
+    error). Results (image, thumb, depth-map URLs) appear on completion.
+  completion_signals:
+    - webhook            # POST callbacks to webhook_url on each status change
+    - pusher             # realtime status_update event on pusher_channel
+    - polling            # GET /api/v1/imagine/requests/{id} (rate-limited; discouraged)
+idempotency:
+  supported: false
+  note: No idempotency-key header or contract documented.
+pagination:
+  style: offset
+  applies_to:
+    - openapi/blockade-games-skybox-openapi.yml#getHistory
+  params: [limit, offset, order]
+  extra_filters: [status, query, imagine_id, generator]
+request_tracing:
+  request_id_header: null
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/blockade-games-lifecycle.yml
+error_handling:
+  envelope: async generation error/abort status (see errors/blockade-games-problem-types.yml)
+  rfc9457: false
+rate_limiting:
+  documented: true
+  signal_headers: null
+  note: A rate limiter exists (polling can trigger it); no numeric limits or headers published.
+  ref: null
+webhooks:
+  ref: asyncapi/blockade-games-webhooks.yml

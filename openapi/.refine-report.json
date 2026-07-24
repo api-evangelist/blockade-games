@@ -1,0 +1,16 @@
+{
+  "provider": "blockade-games",
+  "sources": [
+    "blockade-games-skybox-exports-api-openapi.yml",
+    "blockade-games-skyboxes-api-openapi.yml"
+  ],
+  "outputs": [
+    "blockade-games-skybox-exports-api-openapi.yml",
+    "blockade-games-skyboxes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

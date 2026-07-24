@@ -1,0 +1,18 @@
+generated: '2026-07-18'
+method: searched
+source: https://api-documentation.blockadelabs.com/ + https://www.blockadelabs.com/roadmap
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+  docs: https://api-documentation.blockadelabs.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation / Sunset (RFC 8594) policy published.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.blockadelabs.com/
+roadmap: https://www.blockadelabs.com/roadmap
+deprecated_operations: []

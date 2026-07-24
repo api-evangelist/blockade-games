@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/blockade-games-skybox-openapi.yml
+skills:
+  - file: blockade-games-generate-skybox.md
+    name: Generate and retrieve a Skybox
+    api: openapi/blockade-games-skybox-openapi.yml
+    operations: [getSkyboxStyles, generateSkybox, getSkyboxById]
+  - file: blockade-games-export-skybox.md
+    name: Export a completed Skybox
+    api: openapi/blockade-games-skybox-openapi.yml
+    operations: [getExportTypes, requestExport, getExportRequest]

@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/blockade-games-skybox-openapi.yml + well-known/blockade-games-openid-configuration.json
+standards:
+  - id: apikey-auth
+    conforms: true
+    evidence: openapi securityScheme type apiKey (x-api-key header), applied globally
+  - id: oidc
+    conforms: true
+    evidence: backend.blockadelabs.com/.well-known/openid-configuration present (issuer, authorize/token/jwks endpoints)
+  - id: oauth2
+    conforms: true
+    evidence: openid-configuration advertises authorization_code, client_credentials, refresh_token grants (platform login; API itself is key-auth)
+  - id: webhooks
+    conforms: true
+    evidence: documented POST callbacks to webhook_url on each generation status update, with retry/backoff
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: OpenAPI documents only 200 responses; no application/problem+json envelope declared
+  - id: pagination
+    conforms: true
+    evidence: GET /api/v1/imagine/myRequests supports offset + limit query params
+  - id: idempotency
+    conforms: false
+    evidence: no idempotency-key header or contract documented
+  - id: json-api
+    conforms: false
+  - id: fhir-r4
+    conforms: false
+  - id: scim
+    conforms: false

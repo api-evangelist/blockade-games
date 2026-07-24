@@ -1,20 +1,68 @@
 aid: blockade-games
 name: Blockade Games
-description: Blockade Games is a company surfaced as a portfolio company of techstars and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Blockade Games (operating as Blockade Labs) is the maker of Skybox AI, an
+  AI-powered platform that generates production-ready 360 equirectangular
+  panoramas and skyboxes from text prompts, along with depth maps for 3D scenes.
+  It offers a public REST API for asynchronous skybox generation, style
+  selection, remixing, history, and multi-format exports, with delivery via
+  webhooks and Pusher realtime events. First-party SDKs ship for
+  JavaScript/TypeScript (npm), PHP/Laravel (Packagist), and Unity (C#), plus
+  engine and tool integrations for Blender, Unreal, Godot, Roblox, SketchUp, and
+  Figma. The product serves game, VR/AR, film, e-commerce, and education teams.
 url: https://raw.githubusercontent.com/api-evangelist/blockade-games/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://static.wixstatic.com/media/8d6639_b2ee76a88e224659804c1ef09c7bc5da~mv2.jpg/v1/fit/w_2500,h_1330,al_c/8d6639_b2ee76a88e224659804c1ef09c7bc5da~mv2.jpg
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Image Generation
+- 3D
+- Gaming
+- Virtual Reality
+- Content Generation
+- Skybox
+apis:
+- aid: blockade-games:blockade-games-skybox-exports-api
+  name: Blockade Games Skybox Exports API
+  description: The Skybox Exports API from Blockade Games — 2 operation(s) for skybox exports.
+  humanURL: https://api-documentation.blockadelabs.com/
+  baseURL: https://backend.blockadelabs.com/api/v1
+  tags:
+  - Skybox Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/blockade-games-skybox-exports-api-openapi.yml
+- aid: blockade-games:blockade-games-skyboxes-api
+  name: Blockade Games Skyboxes API
+  description: The Skyboxes API from Blockade Games — 8 operation(s) for skyboxes.
+  humanURL: https://api-documentation.blockadelabs.com/
+  baseURL: https://backend.blockadelabs.com/api/v1
+  tags:
+  - Skyboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/blockade-games-skyboxes-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +70,69 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://blockade.games/
+  url: https://www.blockadelabs.com/
+- type: DeveloperPortal
+  url: https://api-documentation.blockadelabs.com/
+- type: Documentation
+  url: https://api-documentation.blockadelabs.com/
+- type: APIReference
+  url: https://api-documentation.blockadelabs.com/api/
+- type: GettingStarted
+  url: https://api-documentation.blockadelabs.com/api/
+- type: Blog
+  url: https://www.blockadelabs.com/blog
+- type: Roadmap
+  url: https://www.blockadelabs.com/roadmap
+- type: GitHubOrganization
+  url: https://github.com/Blockade-Games
+- type: Pricing
+  url: https://skybox.blockadelabs.com/membership
+- type: SignUp
+  url: https://skybox.blockadelabs.com/signup
+- type: Login
+  url: https://skybox.blockadelabs.com/login
+- type: TermsOfService
+  url: https://www.blockadelabs.com/tos
+- type: PrivacyPolicy
+  url: https://www.blockadelabs.com/privacy
+- type: Support
+  url: https://ed7hj152vhk.typeform.com/to/PHuboGPh
+- type: Postman
+  url: https://www.postman.com/blockadelabs/workspace/public-workspace
+- type: StatusPage
+  url: https://status.blockadelabs.com/
+- type: Authentication
+  url: authentication/blockade-games-authentication.yml
+- type: DomainSecurity
+  url: security/blockade-games-domain-security.yml
+- type: Lifecycle
+  url: lifecycle/blockade-games-lifecycle.yml
+- type: Conventions
+  url: conventions/blockade-games-conventions.yml
+- type: ErrorCatalog
+  url: errors/blockade-games-problem-types.yml
+- type: Conformance
+  url: conformance/blockade-games-conformance.yml
+- type: DataModel
+  url: data-model/blockade-games-data-model.yml
+- type: Webhooks
+  url: asyncapi/blockade-games-webhooks.yml
+- type: Packages
+  url: packages/blockade-games-packages.yml
+- type: SDKs
+  url: packages/blockade-games-packages.yml
+- type: MCPServer
+  url: mcp/blockade-games-mcp.yml
+- type: LLMsTxt
+  url: llms/blockade-games-llms.txt
+- type: WellKnown
+  url: well-known/blockade-games-well-known.yml
+- type: AgentSkill
+  url: skills/blockade-games-generate-skybox.md
+- type: AgentSkill
+  url: skills/blockade-games-export-skybox.md
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
