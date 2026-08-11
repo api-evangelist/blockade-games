@@ -69,6 +69,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/blockade-games-skybox-overlay.yaml
 - type: Website
   url: https://www.blockadelabs.com/
 - type: DeveloperPortal
