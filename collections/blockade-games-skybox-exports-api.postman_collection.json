@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "cd0c3644-8038-4317-b1c5-da21b32c3f5d",
+      "name": "Skybox Exports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f312edee-dc9c-4e6e-8948-853120fe2295",
+          "name": "Get Export Types",
+          "request": {
+            "name": "Get Export Types",
+            "description": {
+              "content": "Returns the list of all available export types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16f8a755-f003-4f99-b356-a25aab18043b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"JPG\",\n    \"key\": \"equirectangular-jpg\",\n    \"premium_feature\": false\n  },\n  {\n    \"id\": 2,\n    \"name\": \"PNG\",\n    \"key\": \"equirectangular-png\",\n    \"premium_feature\": false\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Cube Map\",\n    \"key\": \"cube-map-png\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 4,\n    \"name\": \"HDRI HDR\",\n    \"key\": \"hdri-hdr\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 5,\n    \"name\": \"HDRI EXR\",\n    \"key\": \"hdri-exr\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 6,\n    \"name\": \"Depth Map\",\n    \"key\": \"depth-map-png\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Video Landscape\",\n    \"key\": \"video-landscape-mp4\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Video Portrait\",\n    \"key\": \"video-portrait-mp4\",\n    \"premium_feature\": true\n  },\n  {\n    \"id\": 9,\n    \"name\": \"Video Square\",\n    \"key\": \"video-square-mp4\",\n    \"premium_feature\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe805393-dac5-4690-9deb-2bfbcfe61bdc",
+          "name": "Request Export",
+          "request": {
+            "name": "Request Export",
+            "description": {
+              "content": "Process for tracking export progress is identical to tracking skybox generation by using Pusher, Webhook or API Data pooling.\n\nIf the export request has already been completed you will immediately get a response with status=complete and file_url in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skybox_id\": \"<string>\",\n  \"type_id\": \"<integer>\",\n  \"webhook_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2165bf82-9db8-408c-8c76-0f2d057618ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skybox_id\": \"f87f6a4b3784591795bfed30100a9ef6\",\n  \"type_id\": 2,\n  \"webhook_url\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png\",\n  \"id\": \"b26584eb869cdebeecdf009b7c17c73b\",\n  \"skybox_obfuscated_id\": \"08ccb4947d546dec0ce454538ebb51a8\",\n  \"type\": \"equirectangular-png\",\n  \"type_id\": 2,\n  \"status\": \"complete\",\n  \"queue_position\": 0,\n  \"error_message\": \"string\",\n  \"pusher_channel\": \"export_status_update_b26584eb869cdebeecdf009b7c17c73b\",\n  \"pusher_event\": \"status_update\",\n  \"webhook_url\": \"test_weebhook\",\n  \"created_at\": \"2023-08-23T13:52:59.000000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68f29279-75af-4e4f-89d8-656527105744",
+          "name": "Get export request",
+          "request": {
+            "name": "Get export request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "export",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the export."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32cd372a-cfaa-4d65-b409-ebf7d3ba0951",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "export",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/exports/equirectangular-png/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_equirectangular-png.png\",\n  \"id\": \"b26584eb869cdebeecdf009b7c17c73b\",\n  \"skybox_obfuscated_id\": \"08ccb4947d546dec0ce454538ebb51a8\",\n  \"type\": \"equirectangular-png\",\n  \"type_id\": 2,\n  \"status\": \"complete\",\n  \"queue_position\": 0,\n  \"error_message\": \"string\",\n  \"pusher_channel\": \"export_status_update_b26584eb869cdebeecdf009b7c17c73b\",\n  \"pusher_event\": \"status_update\",\n  \"webhook_url\": \"test_weebhook\",\n  \"created_at\": \"2023-08-23T13:52:59.000000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ce063ba-b02d-4a84-88a9-db9af8bc72e0",
+          "name": "Cancel export request",
+          "request": {
+            "name": "Cancel export request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "export",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the export."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8503fc6-5f25-4e24-943d-05c12e17346e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "export",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://backend.blockadelabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b8fdabe-7803-4cab-ae79-2352e268d187",
+    "name": "Blockade Labs API Documentation Skybox Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

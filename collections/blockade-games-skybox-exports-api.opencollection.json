@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Blockade Labs API Documentation Skybox Exports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Skybox Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Export Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/export",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ]
+          },
+          "docs": "Returns the list of all available export types."
+        },
+        {
+          "info": {
+            "name": "Request Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/export",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Process for tracking export progress is identical to tracking skybox generation by using Pusher, Webhook or API Data pooling.\n\nIf the export request has already been completed you will immediately get a response with status=complete and file_url in the response."
+        },
+        {
+          "info": {
+            "name": "Get export request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/export/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "aut",
+                "type": "path",
+                "description": "The ID of the export."
+              }
+            ]
+          },
+          "docs": "Get export request"
+        },
+        {
+          "info": {
+            "name": "Cancel export request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/export/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "aut",
+                "type": "path",
+                "description": "The ID of the export."
+              }
+            ]
+          },
+          "docs": "Cancel export request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

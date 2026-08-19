@@ -1,0 +1,328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Blockade Labs API Documentation Skybox Exports Skyboxes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Skyboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Skybox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "negative_text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhance_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "skybox_style_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "remix_imagine_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "control_image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "control_model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "init_image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "init_strength",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "return_depth_hq",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "webhook_url",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Used for generating skyboxes, skybox remixes and depth maps."
+        },
+        {
+          "info": {
+            "name": "Get Skybox Styles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/styles",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "model_version",
+                "value": "",
+                "type": "query",
+                "description": "Filter skybox styles by model version number (ie. \"2\" or \"3\")"
+              }
+            ]
+          },
+          "docs": "Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation."
+        },
+        {
+          "info": {
+            "name": "Get Skybox Style Families",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/skybox/families",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ]
+          },
+          "docs": "Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation, sorted by style family. This route can be used in order to build a menu of styles sorted by family."
+        },
+        {
+          "info": {
+            "name": "Get Skybox by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/requests/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the skybox."
+              }
+            ]
+          },
+          "docs": "Get Skybox by id"
+        },
+        {
+          "info": {
+            "name": "Cancel Generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/requests/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the skybox."
+              }
+            ]
+          },
+          "docs": "This request sets the status to the abort value."
+        },
+        {
+          "info": {
+            "name": "Get Skybox by Obfuscated id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/requests/obfuscated-id/:obfuscatedId",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "obfuscatedId",
+                "value": "c60354672339614111cee85d21253244",
+                "type": "path",
+                "description": "Obfuscated ID of the skybox."
+              }
+            ]
+          },
+          "docs": "Get Skybox by Obfuscated id"
+        },
+        {
+          "info": {
+            "name": "Get History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/myRequests",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status. Options: all, pending, dispatched, processing, complete, abort, error (default: all)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to be returned per page (default: 18, max-value: 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page number (default: 0)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order. Options: ASC, DESC (default: DESC)"
+              },
+              {
+                "name": "imagine_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by skybox ID"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Filter by title or prompt"
+              },
+              {
+                "name": "generator",
+                "value": "",
+                "type": "query",
+                "description": "Filter by generator"
+              }
+            ]
+          },
+          "docs": "Get History"
+        },
+        {
+          "info": {
+            "name": "Cancel All Pending Generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/requests/pending",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ]
+          },
+          "docs": "This request sets the status of all pending generations to abort."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://backend.blockadelabs.com/api/v1/imagine/deleteImagine/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "{YOUR_API_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "46",
+                "type": "path",
+                "description": "The ID of the skybox to delete."
+              }
+            ]
+          },
+          "docs": "This request deletes skybox."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1253 @@
+{
+  "item": [
+    {
+      "id": "2bf639b6-2c91-4185-a33a-ceb16d1e4dc1",
+      "name": "Skyboxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26fd1170-0bbc-44b1-becf-61f90bebd98a",
+          "name": "Generate Skybox",
+          "request": {
+            "name": "Generate Skybox",
+            "description": {
+              "content": "Used for generating skyboxes, skybox remixes and depth maps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Text prompt describing the skybox world you wish to create. Maximum number of characters: 550. If you are using skybox_style_id then the maximum number of characters is defined in the max-char response parameter defined for each style."
+                },
+                {
+                  "key": "negative_text",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Describe things to avoid in the skybox world you wish to create. Maximum number of characters: 200. If you are using skybox_style_id then the maximum number of characters is defined in the negative-text-max-char response parameter defined for each style."
+                },
+                {
+                  "key": "enhance_prompt",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Have an AI automatically improve your prompt to generate pro-level results every time (default: false)"
+                },
+                {
+                  "key": "seed",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Send 0 for a random seed generation. Any other number (1-2147483647) set will be used to \"freeze\" the image generator and create similar images when run again with the same seed and settings."
+                },
+                {
+                  "key": "skybox_style_id",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Predefined styles that influence the overall aesthetic of your skybox generation (Fantasy landscape, Anime art style, etc...)."
+                },
+                {
+                  "key": "remix_imagine_id",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "ID of a previously generated skybox"
+                },
+                {
+                  "key": "control_image",
+                  "type": "file",
+                  "description": "Control image used to influence the generation. The image needs to be exacly 1024 pixels wide and 512 pixels tall PNG equirectangular projection image of a scribble with black (#00000) background and white (#ffffff) brush strokes. For \"scribble\" effect you will also need to send control_model=\"scribble\"."
+                },
+                {
+                  "key": "control_model",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Model used for the control_image. Currently, the only option is: \"scribble\"."
+                },
+                {
+                  "key": "init_image",
+                  "type": "file",
+                  "description": "Image (Binary/Base64 string/Absolute URL) to be used as initial image for Skybox generation. Please use equirectangular 360° images. 2:1 aspect ratio recommended. Maximum file size is 50 megabytes."
+                },
+                {
+                  "key": "init_strength",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "Scale to be used as initial influence of the \"Init Image\" for Skybox generation. The default value is 0, allowed range is between 0 and 0.97, where 0 represents no influence and 0.97 represents lots of influence. Only has an effect when using an init_image parameter."
+                },
+                {
+                  "key": "return_depth_hq",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Request for high quality depth map. It will be returned in the depth_map_url parameter. (default: false)"
+                },
+                {
+                  "key": "webhook_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Optionally, you may specify a webhook url to specify the destination for progress updates"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "85713a42-dced-45c9-aa7d-e52622c05ab9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Text prompt describing the skybox world you wish to create. Maximum number of characters: 550. If you are using skybox_style_id then the maximum number of characters is defined in the max-char response parameter defined for each style.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "dark forest",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Describe things to avoid in the skybox world you wish to create. Maximum number of characters: 200. If you are using skybox_style_id then the maximum number of characters is defined in the negative-text-max-char response parameter defined for each style.",
+                        "type": "text/plain"
+                      },
+                      "key": "negative_text",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Have an AI automatically improve your prompt to generate pro-level results every time (default: false)",
+                        "type": "text/plain"
+                      },
+                      "key": "enhance_prompt",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Send 0 for a random seed generation. Any other number (1-2147483647) set will be used to \"freeze\" the image generator and create similar images when run again with the same seed and settings.",
+                        "type": "text/plain"
+                      },
+                      "key": "seed",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Predefined styles that influence the overall aesthetic of your skybox generation (Fantasy landscape, Anime art style, etc...).",
+                        "type": "text/plain"
+                      },
+                      "key": "skybox_style_id",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ID of a previously generated skybox",
+                        "type": "text/plain"
+                      },
+                      "key": "remix_imagine_id",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Control image used to influence the generation. The image needs to be exacly 1024 pixels wide and 512 pixels tall PNG equirectangular projection image of a scribble with black (#00000) background and white (#ffffff) brush strokes. For \"scribble\" effect you will also need to send control_model=\"scribble\".",
+                        "type": "text/plain"
+                      },
+                      "key": "control_image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model used for the control_image. Currently, the only option is: \"scribble\".",
+                        "type": "text/plain"
+                      },
+                      "key": "control_model",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Image (Binary/Base64 string/Absolute URL) to be used as initial image for Skybox generation. Please use equirectangular 360° images. 2:1 aspect ratio recommended. Maximum file size is 50 megabytes.",
+                        "type": "text/plain"
+                      },
+                      "key": "init_image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Scale to be used as initial influence of the \"Init Image\" for Skybox generation. The default value is 0, allowed range is between 0 and 0.97, where 0 represents no influence and 0.97 represents lots of influence. Only has an effect when using an init_image parameter.",
+                        "type": "text/plain"
+                      },
+                      "key": "init_strength",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Request for high quality depth map. It will be returned in the depth_map_url parameter. (default: false)",
+                        "type": "text/plain"
+                      },
+                      "key": "return_depth_hq",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optionally, you may specify a webhook url to specify the destination for progress updates",
+                        "type": "text/plain"
+                      },
+                      "key": "webhook_url",
+                      "value": "",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 46,\n  \"obfuscated_id\": \"c60354672339614111cee85d21253244\",\n  \"user_id\": 8,\n  \"title\": \"World #46\",\n  \"prompt\": \"dark forest\",\n  \"seed\": 50702979,\n  \"negative_text\": \"string\",\n  \"username\": \"test\",\n  \"status\": \"pending\",\n  \"queue_position\": 1,\n  \"file_url\": \"\",\n  \"thumb_url\": \"\",\n  \"depth_map_url\": \"\",\n  \"remix_imagine_id\": \"string\",\n  \"remix_obfuscated_id\": \"string\",\n  \"isMyFavorite\": false,\n  \"created_at\": \"2023-08-21T13:35:14+00:00\",\n  \"updated_at\": \"2023-08-21T13:35:14+00:00\",\n  \"error_message\": \"string\",\n  \"pusher_channel\": \"status_update_c60354672339614111cee85d21253244\",\n  \"pusher_event\": \"status_update\",\n  \"type\": \"skybox\",\n  \"skybox_style_id\": 2,\n  \"skybox_id\": 2,\n  \"skybox_style_name\": \"V2 Fantasy Lands\",\n  \"skybox_name\": \"V2 Fantasy Lands\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e99f634d-2701-4221-833b-1c3a4ac271ac",
+          "name": "Get Skybox Styles",
+          "request": {
+            "name": "Get Skybox Styles",
+            "description": {
+              "content": "Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "styles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "model_version",
+                  "value": "<string>",
+                  "description": "Filter skybox styles by model version number (ie. \"2\" or \"3\")"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35238af5-8ae7-4206-a948-65e6fd3ee6b4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "styles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model_version",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2,\n    \"name\": \"Fantasy\",\n    \"description\": \"Classic fantasy subject matter concept art renderings\",\n    \"max-char\": 370,\n    \"negative-text-max-char\": 220,\n    \"image\": \"https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.webp\",\n    \"image_jpg\": \"https://images.blockadelabs.com/images/skybox/4R0ACI1zHpLoOT8gGGu0dEe4QEzoMelaWGavSqPk.jpg\",\n    \"model\": \"Model 2\",\n    \"model_version\": \"2\",\n    \"sort_order\": 20,\n    \"premium\": 0,\n    \"new\": 0,\n    \"experimental\": 0,\n    \"skybox_style_families_id\": 3\n  },\n  {\n    \"id\": 43,\n    \"name\": \"Art Mix\",\n    \"description\": \"Multimedia painterly art that pulls from watercolor, marker, paint, pastels, and more\",\n    \"max-char\": 412,\n    \"negative-text-max-char\": 210,\n    \"image\": \"https://images.blockadelabs.com/images/skybox/MYklQhpxG7wbn7HkftNTNxLZMc5mBjYvUuRajHpp.webp\",\n    \"image_jpg\": \"https://images.blockadelabs.com/images/skybox/MYklQhpxG7wbn7HkftNTNxLZMc5mBjYvUuRajHpp.jpg\",\n    \"model\": \"Model 2\",\n    \"model_version\": \"2\",\n    \"sort_order\": 6,\n    \"premium\": 0,\n    \"new\": 0,\n    \"experimental\": 0,\n    \"skybox_style_families_id\": 7\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c36240a-1a40-42e1-b28c-4f31661127e2",
+          "name": "Get Skybox Style Families",
+          "request": {
+            "name": "Get Skybox Style Families",
+            "description": {
+              "content": "Returns the list of predefined styles that can influence the overall aesthetic of your skybox generation, sorted by style family. This route can be used in order to build a menu of styles sorted by family.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "skybox",
+                "families"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "604dbe5f-6003-4c7e-b294-3d912d5b9814",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "skybox",
+                    "families"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"family\",\n    \"id\": 17,\n    \"name\": \"Model 3 Realistic\",\n    \"sort_order\": 1,\n    \"items\": [\n      {\n        \"type\": \"style\",\n        \"id\": 119,\n        \"name\": \"M3 Photoreal (Featured)\",\n        \"sort_order\": 1,\n        \"description\": \"Photographic realism with a high degree of flexibility and good visual fidelity\",\n        \"max-char\": 600,\n        \"negative-text-max-char\": 410,\n        \"image\": \"https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.webp\",\n        \"image_jpg\": \"https://images.blockadelabs.com/images/skybox/WJgTolgUIXCDZM5LOTeUR2T8IOfZHnq2OQzozqH0.jpg\",\n        \"model\": \"Model 3\",\n        \"model_version\": \"3\"\n      },\n      {\n        \"type\": \"style\",\n        \"id\": 102,\n        \"name\": \"M3 Cinematic Realism\",\n        \"sort_order\": 2,\n        \"description\": \"Photographic realism with dramatic, dark color grading and filmic mood\",\n        \"max-char\": 600,\n        \"negative-text-max-char\": 430,\n        \"image\": \"https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.webp\",\n        \"image_jpg\": \"https://images.blockadelabs.com/images/skybox/gGfOHzfOiAgvkVxHVtg6TDNwWa22SvTluHoRJNTK.jpg\",\n        \"model\": \"Model 3\",\n        \"model_version\": \"3\"\n      }\n    ]\n  },\n  {\n    \"type\": \"style\",\n    \"id\": 13,\n    \"name\": \"Advanced (no style)\",\n    \"sort_order\": 17,\n    \"description\": null,\n    \"max-char\": 540,\n    \"negative-text-max-char\": 220,\n    \"image\": null,\n    \"image_jpg\": null,\n    \"model\": \"Model 2\",\n    \"model_version\": \"2\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d0e52f0-be8b-4816-8b52-c0f56fb22b08",
+          "name": "Get Skybox by id",
+          "request": {
+            "name": "Get Skybox by id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "requests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the skybox."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d077d394-5b41-4962-9434-4d2472276ee7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "requests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the skybox."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request\": {\n    \"id\": 46,\n    \"obfuscated_id\": \"c60354672339614111cee85d21253244\",\n    \"user_id\": 8,\n    \"title\": \"World #46\",\n    \"prompt\": \"dark forest\",\n    \"seed\": 50702979,\n    \"negative_text\": \"string\",\n    \"username\": \"test\",\n    \"status\": \"complete\",\n    \"queue_position\": 0,\n    \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"thumb_url\": \"https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"depth_map_url\": \"https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"remix_imagine_id\": \"string\",\n    \"remix_obfuscated_id\": \"string\",\n    \"isMyFavorite\": false,\n    \"created_at\": \"2023-08-21T13:35:14+00:00\",\n    \"updated_at\": \"2023-08-22T06:46:00+00:00\",\n    \"error_message\": \"string\",\n    \"pusher_channel\": \"status_update_c60354672339614111cee85d21253244\",\n    \"pusher_event\": \"status_update\",\n    \"type\": \"skybox\",\n    \"skybox_style_id\": 2,\n    \"skybox_id\": 2,\n    \"skybox_style_name\": \"V2 Fantasy Lands\",\n    \"skybox_name\": \"V2 Fantasy Lands\",\n    \"dispatched_at\": \"2023-08-22T06:45:28+00:00\",\n    \"processing_at\": \"2023-08-22T06:45:55+00:00\",\n    \"completed_at\": \"2023-08-22T06:46:00+00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb056625-f3d2-440f-b230-2364591bf951",
+          "name": "Cancel Generation",
+          "request": {
+            "name": "Cancel Generation",
+            "description": {
+              "content": "This request sets the status to the abort value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "requests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the skybox."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a2ca403-3f1d-4672-8a33-edfa2fc177f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "requests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the skybox."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36cabfc1-cc5e-4345-a5be-678da84760c9",
+          "name": "Get Skybox by Obfuscated id",
+          "request": {
+            "name": "Get Skybox by Obfuscated id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "requests",
+                "obfuscated-id",
+                ":obfuscatedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "obfuscatedId",
+                  "description": "(Required) Obfuscated ID of the skybox."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26a04267-e1b4-4fcf-84e9-47472b97d528",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "requests",
+                    "obfuscated-id",
+                    ":obfuscatedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "obfuscatedId",
+                      "description": "(Required) Obfuscated ID of the skybox."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request\": {\n    \"id\": 46,\n    \"obfuscated_id\": \"c60354672339614111cee85d21253244\",\n    \"user_id\": 8,\n    \"title\": \"World #46\",\n    \"prompt\": \"dark forest\",\n    \"seed\": 50702979,\n    \"negative_text\": \"string\",\n    \"username\": \"test\",\n    \"status\": \"complete\",\n    \"queue_position\": 0,\n    \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/images/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"thumb_url\": \"https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"depth_map_url\": \"https://blockade-platform-production.s3.amazonaws.com/depths/imagine/futuristic_microdetailed_vr_scifi_concept_art_cinematic_vr_neon__dbe7f963dc23699c__2757929_dbe7.jpg?ver=1\",\n    \"remix_imagine_id\": \"string\",\n    \"remix_obfuscated_id\": \"string\",\n    \"isMyFavorite\": false,\n    \"created_at\": \"2023-08-21T13:35:14+00:00\",\n    \"updated_at\": \"2023-08-22T06:46:00+00:00\",\n    \"error_message\": \"string\",\n    \"pusher_channel\": \"status_update_c60354672339614111cee85d21253244\",\n    \"pusher_event\": \"status_update\",\n    \"type\": \"skybox\",\n    \"skybox_style_id\": 2,\n    \"skybox_id\": 2,\n    \"skybox_style_name\": \"V2 Fantasy Lands\",\n    \"skybox_name\": \"V2 Fantasy Lands\",\n    \"dispatched_at\": \"2023-08-22T06:45:28+00:00\",\n    \"processing_at\": \"2023-08-22T06:45:55+00:00\",\n    \"completed_at\": \"2023-08-22T06:46:00+00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c21dcaf7-8d5a-4b88-918c-2b7fe332ff82",
+          "name": "Get History",
+          "request": {
+            "name": "Get History",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "myRequests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status. Options: all, pending, dispatched, processing, complete, abort, error (default: all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items to be returned per page (default: 18, max-value: 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Page number (default: 0)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort order. Options: ASC, DESC (default: DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "imagine_id",
+                  "value": "<integer>",
+                  "description": "Filter by skybox ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Filter by title or prompt"
+                },
+                {
+                  "disabled": false,
+                  "key": "generator",
+                  "value": "<string>",
+                  "description": "Filter by generator"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b79ab73d-310c-45fa-a821-a55125461702",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "myRequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": ""
+                    },
+                    {
+                      "key": "imagine_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query",
+                      "value": ""
+                    },
+                    {
+                      "key": "generator",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 8442285,\n      \"obfuscated_id\": \"f87f6a4b3784591795bfed30100a9ef6\",\n      \"user_id\": 1352,\n      \"title\": \"World #8442285\",\n      \"prompt\": \"dark forest\",\n      \"seed\": 32061051,\n      \"negative_text\": \"string\",\n      \"username\": \"test\",\n      \"status\": \"complete\",\n      \"queue_position\": 0,\n      \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/images/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1\",\n      \"thumb_url\": \"https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1\",\n      \"depth_map_url\": \"https://blockade-platform-production.s3.amazonaws.com/depths/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_depth-map.jpg?ver=1\",\n      \"remix_imagine_id\": \"string\",\n      \"remix_obfuscated_id\": \"string\",\n      \"isMyFavorite\": false,\n      \"created_at\": \"2023-08-23T08:51:55+00:00\",\n      \"updated_at\": \"2023-08-23T08:52:10+00:00\",\n      \"error_message\": \"string\",\n      \"pusher_channel\": \"status_update_f87f6a4b3784591795bfed30100a9ef6\",\n      \"pusher_event\": \"status_update\",\n      \"type\": \"skybox\",\n      \"skybox_style_id\": 2,\n      \"skybox_id\": 2,\n      \"skybox_style_name\": \"Fantasy\",\n      \"skybox_name\": \"Fantasy\",\n      \"dispatched_at\": \"2023-08-23T08:51:56+00:00\",\n      \"processing_at\": \"2023-08-23T08:51:56+00:00\",\n      \"completed_at\": \"2023-08-23T08:52:10+00:00\"\n    },\n    {\n      \"id\": 8442285,\n      \"obfuscated_id\": \"f87f6a4b3784591795bfed30100a9ef6\",\n      \"user_id\": 1352,\n      \"title\": \"World #8442285\",\n      \"prompt\": \"dark forest\",\n      \"seed\": 32061051,\n      \"negative_text\": \"string\",\n      \"username\": \"test\",\n      \"status\": \"complete\",\n      \"queue_position\": 0,\n      \"file_url\": \"https://blockade-platform-production.s3.amazonaws.com/images/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1\",\n      \"thumb_url\": \"https://blockade-platform-production.s3.amazonaws.com/thumbs/imagine/thumb_vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285.jpg?ver=1\",\n      \"depth_map_url\": \"https://blockade-platform-production.s3.amazonaws.com/depths/imagine/vr360-intricate-fantasy-art-dark-forest-vr360-c4d-computer-r_8442285_depth-map.jpg?ver=1\",\n      \"remix_imagine_id\": \"string\",\n      \"remix_obfuscated_id\": \"string\",\n      \"isMyFavorite\": false,\n      \"created_at\": \"2023-08-23T08:51:55+00:00\",\n      \"updated_at\": \"2023-08-23T08:52:10+00:00\",\n      \"error_message\": \"string\",\n      \"pusher_channel\": \"status_update_f87f6a4b3784591795bfed30100a9ef6\",\n      \"pusher_event\": \"status_update\",\n      \"type\": \"skybox\",\n      \"skybox_style_id\": 2,\n      \"skybox_id\": 2,\n      \"skybox_style_name\": \"Fantasy\",\n      \"skybox_name\": \"Fantasy\",\n      \"dispatched_at\": \"2023-08-23T08:51:56+00:00\",\n      \"processing_at\": \"2023-08-23T08:51:56+00:00\",\n      \"completed_at\": \"2023-08-23T08:52:10+00:00\"\n    }\n  ],\n  \"totalCount\": 18,\n  \"has_more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92e72ca2-dc28-4f23-81e1-c7ea93cd812a",
+          "name": "Cancel All Pending Generations",
+          "request": {
+            "name": "Cancel All Pending Generations",
+            "description": {
+              "content": "This request sets the status of all pending generations to abort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "requests",
+                "pending"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de09dbf8-06e6-49ef-953b-7b8f60d8dc4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "requests",
+                    "pending"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25184fa4-3ac4-4cd2-8188-a507aa9740fd",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "This request deletes skybox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "imagine",
+                "deleteImagine",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the skybox to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8424847-56ce-4f58-84f7-8dbaa7b3f568",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "imagine",
+                    "deleteImagine",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the skybox to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-api-key",
+                    "value": "{YOUR_API_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"Item deleted successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://backend.blockadelabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ea89e037-748e-4ad4-b14d-71603f0f8adc",
+    "name": "Blockade Labs API Documentation Skybox Exports Skyboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
