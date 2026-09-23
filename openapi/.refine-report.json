@@ -1,8 +1,7 @@
 {
   "provider": "blockade-games",
   "sources": [
-    "blockade-games-skybox-exports-api-openapi.yml",
-    "blockade-games-skyboxes-api-openapi.yml"
+    "_original/blockade-games-skybox-openapi.yml"
   ],
   "outputs": [
     "blockade-games-skybox-exports-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "blockade-games-skybox-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "blockade-games-skybox-exports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "blockade-games-skyboxes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
