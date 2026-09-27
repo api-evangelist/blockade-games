@@ -49,7 +49,7 @@ image: https://static.wixstatic.com/media/8d6639_b2ee76a88e224659804c1ef09c7bc5d
 tags:
 - Company
 - Artificial Intelligence
-- Image-Generation
+- Image Generation
 - 3D
 - Gaming
 - Virtual Reality
@@ -64,6 +64,7 @@ tags_raw:
 - Virtual Reality
 - Content Generation
 - Skybox
+- Image-Generation
 apis:
 - aid: blockade-games:blockade-games-skybox-exports-api
   name: Blockade Games Skybox Exports API
