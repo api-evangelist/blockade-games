@@ -44,7 +44,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-10-06'
 image: https://static.wixstatic.com/media/8d6639_b2ee76a88e224659804c1ef09c7bc5da~mv2.jpg/v1/fit/w_2500,h_1330,al_c/8d6639_b2ee76a88e224659804c1ef09c7bc5da~mv2.jpg
 tags:
 - Company
@@ -92,6 +92,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.blockadelabs.com/blog-feed.xml
+  type: BlogRSS
 - type: Overlay
   url: overlays/blockade-games-skybox-overlay.yaml
 - type: Website
